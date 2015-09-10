@@ -29,11 +29,11 @@ public class CurrentConditionsDisplay extends JFrame implements Observer {
   public CurrentConditionsDisplay(WeatherData aWeatherData, int x, int y) {
     this.setTitle("Current Conditions");
     // Key to register his observer with Observable.
-    weatherData.addObserver(this);
     createGui();
     this.setLocation(x, y);
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     weatherData = aWeatherData;
+    weatherData.addObserver(this);
     this.addWindowListener(new WindowAdapter() {
       /**
        * Remove the observer from the Subject so no attempt is made by

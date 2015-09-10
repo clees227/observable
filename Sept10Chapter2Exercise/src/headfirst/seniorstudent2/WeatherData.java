@@ -43,6 +43,7 @@ public class WeatherData extends Observable implements Serializable {
 
   public void measurementsChanged() {
     System.out.println(this.toString());
+    setChanged();
     notifyObservers();
   }
 
@@ -61,4 +62,5 @@ public class WeatherData extends Observable implements Serializable {
     s = s + "\n" + "pressure: " + pressure;
     return s;
   }
+  
 }
