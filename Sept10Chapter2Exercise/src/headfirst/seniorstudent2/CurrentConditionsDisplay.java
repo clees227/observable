@@ -24,13 +24,16 @@ public class CurrentConditionsDisplay extends JFrame implements Observer {
   private JTextField humidityTextField;
   private JTextField pressureTextField;
   private JTextField temperatureTextField;
+  private WeatherData weatherData;
 
-  public CurrentConditionsDisplay(WeatherData weatherData, int x, int y) {
+  public CurrentConditionsDisplay(WeatherData aWeatherData, int x, int y) {
     this.setTitle("Current Conditions");
     // Key to register his observer with Observable.
+    weatherData.addObserver(this);
     createGui();
     this.setLocation(x, y);
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    weatherData = aWeatherData;
     this.addWindowListener(new WindowAdapter() {
       /**
        * Remove the observer from the Subject so no attempt is made by
@@ -39,7 +42,7 @@ public class CurrentConditionsDisplay extends JFrame implements Observer {
       @Override
       public void windowClosing(WindowEvent e) {
         System.out.println("Removed observer");
-        removeTheObserver();
+        weatherData.deleteObserver(CurrentConditionsDisplay.this);
       }
     });
     this.pack();
