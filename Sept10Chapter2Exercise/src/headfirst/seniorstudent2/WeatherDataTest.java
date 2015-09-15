@@ -27,6 +27,8 @@ public class WeatherDataTest {
 	public void testSetMeasurements() {
 		data.setMeasurements(30, 40, 20);
 		assertEquals(data.getTemperature(), 30, 0);
+		assertEquals(data.getHumidity(), 40, 0);
+		assertEquals(data.getPressure(), 20,0);
 	}
 
 	@Test
